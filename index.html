@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Data Kecamatan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #a0f9cb;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            background-color: #d4edda;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            color: #155724;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #155724;
+            padding-bottom: 10px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #343a40;
+        }
+
+        .btn-submit {
+            background-color: #28a745;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+
+        #informasi {
+            color: #dc3545;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Input Data Kecamatan</h2>
+        <form action="input.php" onsubmit="return validateForm()" method="post">
+            <div class="form-group">
+                <label for="kecamatan">Kecamatan:</label>
+                <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="">
+            </div>
+            
+            <div class="form-group">
+                <label for="luas">Luas:</label>
+                <input type="text" class="form-control" id="luas" name="luas" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="jumlah_penduduk">Jumlah Penduduk:</label>
+                <input type="text" class="form-control" id="jumlah_penduduk" name="jumlah_penduduk" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input type="text" class="form-control" id="longitude" name="longitude" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input type="text" class="form-control" id="latitude" name="latitude" value="">
+            </div>
+            
+            <button type="submit" class="btn btn-submit btn-block">Submit</button>
+        </form> 
+        <p id="informasi"></p>
+    </div>
+
+    <script>
+        function validateForm() {
+            let kecamatan = document.getElementById("kecamatan").value;
+            let luas = document.getElementById("luas").value;
+            let jumlahPenduduk = document.getElementById("jumlah_penduduk").value;
+            let longitude = document.getElementById("longitude").value;
+            let latitude = document.getElementById("latitude").value;
+            let text = "";
+
+            if (kecamatan.trim() === "") {
+                text += "Data kecamatan tidak boleh kosong.<br>";
+            }
+            if (isNaN(luas) || luas < 1) {
+                text += "Data luas harus angka dan tidak boleh bernilai negatif.<br>";
+            }
+            if (isNaN(jumlahPenduduk) || jumlahPenduduk < 1) {
+                text += "Data jumlah penduduk harus angka dan tidak boleh bernilai negatif.<br>";
+            }
+            if (isNaN(longitude) || isNaN(latitude)) {
+                text += "Data longitude dan latitude harus berupa angka.<br>";
+            }
+
+            document.getElementById("informasi").innerHTML = text;
+            if (text !== "") {
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
